@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Application.CostСalculation
 {
-    public class ICostCalculation
+    public interface ICostCalculation
     {
+        decimal CalculateCost(decimal estimatedValue, string placeDispatch, string placeReceipt, decimal weight, decimal length, decimal width, decimal height, bool packagingRequired, bool cashOnDelivery);
     }
 }

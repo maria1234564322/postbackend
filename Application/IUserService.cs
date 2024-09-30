@@ -1,6 +1,6 @@
 ﻿using DataAccess;
 
-namespace Application.User
+namespace Application
 {
     public interface IUserService
     {

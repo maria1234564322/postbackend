@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace DataAccess.User
+namespace DataAccess
 {
     public class UserRepository : IUserRepository
     {

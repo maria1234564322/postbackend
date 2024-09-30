@@ -1,5 +1,5 @@
-﻿using Application.User;
-using DataAccess.User;
+﻿using Application;
+using DataAccess;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;

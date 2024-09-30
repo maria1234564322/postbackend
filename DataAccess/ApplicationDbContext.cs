@@ -1,4 +1,4 @@
-﻿using DataAccess.User;
+﻿using DataAccess;
 using Microsoft.EntityFrameworkCore;
 
 public class ApplicationDbContext : DbContext

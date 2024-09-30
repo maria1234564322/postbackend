@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Application.CostСalculation;
 
 namespace Application.CostCalculation
 {
-    public class CostCalculationService
+    public class CostCalculationService : ICostCalculation
     {
         public decimal CalculateCost(decimal estimatedValue, string placeDispatch, string placeReceipt, decimal weight, decimal length, decimal width, decimal height, bool packagingRequired, bool cashOnDelivery)
         {
@@ -78,7 +78,6 @@ namespace Application.CostCalculation
 
             return cost;
         }
-
     }
 }
 

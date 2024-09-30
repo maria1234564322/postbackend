@@ -1,5 +1,8 @@
-using Application.User;
-using DataAccess.User;
+using Application;
+using Application.CostCalculation; // Перевірте, що це правильний неймспейс
+using Application.CostСalculation;
+using DataAccess;
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -13,13 +16,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<UserService>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
-
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<ICostCalculation, CostCalculationService>(); // Правильні типи
 builder.Services.AddDbContext<ApplicationDbContext>(b => b.UseSqlite("Data Source=C:\\Databases\\UserDb.db;"));
 builder.Services.AddCors();
 builder.Services.AddEndpointsApiExplorer();
@@ -56,8 +58,8 @@ builder.Services.AddSwaggerGen(option =>
             {
                 Reference = new OpenApiReference
                 {
-                    Type=ReferenceType.SecurityScheme,
-                    Id="Bearer"
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
                 }
             },
             new string[]{}

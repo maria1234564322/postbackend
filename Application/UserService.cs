@@ -1,7 +1,7 @@
 ﻿using DataAccess;
 using System;
 
-namespace Application.User
+namespace Application
 {
     public class UserService : IUserService
     {
