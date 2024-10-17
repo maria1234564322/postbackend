@@ -1,8 +1,15 @@
-using Application;
 using Application.CostCalculation; // Перевірте, що це правильний неймспейс
 using Application.CostСalculation;
-using DataAccess;
-
+using Application.IServices;
+using Application.Services;
+using DataAccess.Repostories.Animal;
+using DataAccess.Repostories.DbClients;
+using DataAccess.Repostories.DbDocuments;
+using DataAccess.Repostories.DbLocations;
+using DataAccess.Repostories.Order;
+using DataAccess.Repostories.Orders;
+using DataAccess.Repostories.Parcels;
+using DataAccess.Repostories.Users;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -13,14 +20,30 @@ using Web.Host;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+//user
 builder.Services.AddTransient<UserService>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IUserService, UserService>();
+//parsel
+builder.Services.AddScoped<IDbParcelRepository, DbParcelRepository>();
+//order
+builder.Services.AddScoped<IDbOrderRepository, DbOrderRepository>();
+builder.Services.AddScoped<IOrdersService, OrdersService>();
+
+//Location
+builder.Services.AddScoped<IDbLocationRepository, DbLocationRepository>();
+//Document
+builder.Services.AddScoped<IDbDocumentRepository, DbDocumentRepository>();
+//Client
+builder.Services.AddScoped<IDbClientRepository, DbClientRepository>();
+//Enimal
+builder.Services.AddScoped<IDbAnimalRepository, DbAnimalRepository>();
+
+
 builder.Services.AddTransient<ICostCalculation, CostCalculationService>(); // Правильні типи
 builder.Services.AddDbContext<ApplicationDbContext>(b => b.UseSqlite("Data Source=C:\\Databases\\UserDb.db;"));
 builder.Services.AddCors();

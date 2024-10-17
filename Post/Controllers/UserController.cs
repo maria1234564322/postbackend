@@ -1,4 +1,4 @@
-﻿using Application;
+﻿using Application.IServices;
 using DataAccess.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -63,9 +63,9 @@ namespace Web.Host.Controllers
             return Ok(response);
         }
 
-        private (User, ClaimsIdentity) GetIdentity(string email, string password)
+        private (DbUser, ClaimsIdentity) GetIdentity(string email, string password)
         {
-            User person = _userService.FindUserByEmailAndPassword(email, password);
+            DbUser person = _userService.FindUserByEmailAndPassword(email, password);
             if (person != null)
             {
                 var claims = new List<Claim>

@@ -1,8 +1,8 @@
-﻿using DataAccess;
+﻿using Application.IServices;
 using DataAccess.Entities;
-using System;
+using DataAccess.Repostories.Users;
 
-namespace Application
+namespace Application.Services
 {
     public class UserService : IUserService
     {
@@ -25,7 +25,16 @@ namespace Application
                 throw new ArgumentException("Passwords do not match.");
             }
 
-            var user = new User
+            var userLocation = new DbLocation()
+            {
+                PostalCode = dto.PostalCode,
+                State = dto.Region,
+                City = dto.City,
+                Street = dto.Street,
+                Apartment = dto.House
+            };
+
+            var user = new DbUser
             {
                 Email = dto.Email,
                 Password = dto.Password,
@@ -33,18 +42,13 @@ namespace Application
                 Name = dto.Name,
                 MiddleName = dto.MiddleName,
                 Phone = dto.Phone,
-                PostalCode = dto.PostalCode,
-                Region = dto.Region,
-                District = dto.District,
-                City = dto.City,
-                Street = dto.Street,
-                House = dto.House
+                UserLocation = userLocation
             };
 
             _repository.Create(user);
         }
 
-        public User FindUserByEmailAndPassword(string email, string password)
+        public DbUser FindUserByEmailAndPassword(string email, string password)
         {
             return _repository.FindByEmailAndPassword(email, password);
         }

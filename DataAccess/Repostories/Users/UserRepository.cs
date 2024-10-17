@@ -1,7 +1,7 @@
 ﻿using DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataAccess
+namespace DataAccess.Repostories.Users
 {
     public class UserRepository : IUserRepository
     {
@@ -12,13 +12,13 @@ namespace DataAccess
             _ctx = ctx;
         }
 
-        public void Create(User user)
+        public void Create(DbUser user)
         {
             _ctx.Users.Add(user);
             _ctx.SaveChanges();
         }
 
-        public User FindByEmailAndPassword(string email, string password)
+        public DbUser FindByEmailAndPassword(string email, string password)
         {
             return _ctx.Users.FirstOrDefault(x => x.Email == email && x.Password == password);
         }
