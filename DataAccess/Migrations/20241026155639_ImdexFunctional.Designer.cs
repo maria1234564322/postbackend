@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241026155639_ImdexFunctional")]
+    partial class ImdexFunctional
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.18");
@@ -123,7 +126,7 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Entities.DbIndex", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Index")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -131,20 +134,8 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("District")
+                    b.Property<string>("Districtus")
                         .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Index")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool?>("IsDeleted")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("Modified")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NumberStreet")
@@ -159,9 +150,9 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                    b.HasKey("Index");
 
-                    b.ToTable("DbIndexs");
+                    b.ToTable("DbIndex");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.DbLocation", b =>

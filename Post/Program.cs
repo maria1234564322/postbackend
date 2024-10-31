@@ -2,9 +2,11 @@ using Application.CostCalculation; // Перевірте, що це правильний неймспейс
 using Application.CostСalculation;
 using Application.IServices;
 using Application.Services;
+using DataAccess.Repositories;
 using DataAccess.Repostories.Animal;
 using DataAccess.Repostories.DbClients;
 using DataAccess.Repostories.DbDocuments;
+using DataAccess.Repostories.DbIndexs;
 using DataAccess.Repostories.DbLocations;
 using DataAccess.Repostories.Order;
 using DataAccess.Repostories.Orders;
@@ -33,7 +35,9 @@ builder.Services.AddScoped<IDbParcelRepository, DbParcelRepository>();
 //order
 builder.Services.AddScoped<IDbOrderRepository, DbOrderRepository>();
 builder.Services.AddScoped<IOrdersService, OrdersService>();
-
+// IIndex
+builder.Services.AddScoped<IIndexService, IndexService>();
+builder.Services.AddScoped<IIndexRepository, IndexRepository>();
 //Location
 builder.Services.AddScoped<IDbLocationRepository, DbLocationRepository>();
 //Document
@@ -89,6 +93,9 @@ builder.Services.AddSwaggerGen(option =>
         }
     });
 });
+
+
+
 var app = builder.Build();
 app.UseCors(builder => builder.WithOrigins(
     "http://localhost:3000/")

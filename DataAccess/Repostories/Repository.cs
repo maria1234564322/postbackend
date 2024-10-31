@@ -4,7 +4,7 @@ namespace DataAccess.Repostories;
 
 public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
 {
-    private readonly ApplicationDbContext _ctx;
+    private protected readonly ApplicationDbContext _ctx;
     public Repository(ApplicationDbContext ctx)
     {
         _ctx = ctx;

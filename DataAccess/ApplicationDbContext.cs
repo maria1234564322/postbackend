@@ -10,7 +10,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<DbLocation> Locations { get; set; }
     public DbSet<DbAnimal> Animals { get; set; }
     public DbSet<DbClient> Clients { get; set; }
-
+    public DbSet<DbIndex> DbIndexs { get; set; }
+    
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
     }
